@@ -111,14 +111,14 @@ var App = function() {
 
 		io.on('connection', function(socket) {
 
-			console.log('A connection arrived...', socked.id);
+			console.log('A connection arrived...', socket.id);
 
 			socket.on('disconnect', function() {
 				console.log('Disconnect from', socket.id);
 			});
 
 			socket.on('turnOff', function(deviceName) {
-				if (params.name) {
+				if (deviceName) {
 					console.log('Turning off %s...', deviceName);
 					var device = findDevice(deviceName);
 
@@ -133,7 +133,7 @@ var App = function() {
 			})
 
 			socket.on('turnOn', function(deviceName) {
-				if (params.name) {
+				if (deviceName) {
 					console.log('Turning on %s...', deviceName);
 					var device = findDevice(deviceName);
 
