@@ -118,7 +118,7 @@ var App = function() {
 		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
 
 
-		io.on('connection', function(socket) {
+		io.of('/tellstick').on('connection', function(socket) {
 
 			console.log('A connection arrived...', socket.id);
 
