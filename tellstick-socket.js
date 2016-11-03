@@ -24,7 +24,6 @@ var App = function() {
 	cmd.option('-s --scan', 'scan the 433 MHz band for all inputs');
 	cmd.parse(process.argv);
 
-
 	var _devices = undefined;
 
 	function getDevices() {
@@ -45,20 +44,7 @@ var App = function() {
 		var devices = getDevices();
 
 		return devices[deviceName];
-/*
-		if (isObject(id) && id.id != undefined)
-			id = id.id;
 
-		id = isNaN(parseInt(id, 10)) ? id: parseInt(id, 10);
-
-		for(var i = 0; i < devices.length; i++) {
-			var device = devices[i];
-
-			if (device.id === id || device.name === id) {
-				return device;
-			}
-		}
-*/
 	}
 
 	function registerDevices() {
@@ -111,20 +97,13 @@ var App = function() {
 	}
 
 	function run(port) {
-		//var app = require('http').createServer();
-		var SocketIO = require('socket.io');
 
 		var app = require('http').createServer(function(){});
-		var io = require('socket.io')(app); //, { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] });
+		var io = require('socket.io')(app);
 
 		app.listen(port, function() {
-			console.log('Listening on port', port);
+			console.log('Listening on port', port, '...');
 		});
-		//var io = new SocketIO({ rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] });
-		//var io = new SocketIO(); //{ rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] });
-
-		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(8080);
-		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
 
 		var namespace = io.of('/tellstick');
 
@@ -141,8 +120,7 @@ var App = function() {
 
 				setTimeout(function() {
 					console.log(params);
-					namespace.emit('tellstick', params);
-
+					namespace.emit('status', params);
 				}, 0);
 
 			}
