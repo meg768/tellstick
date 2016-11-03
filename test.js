@@ -6,6 +6,11 @@ var App = function() {
 
 	var io = require('socket.io-client');
   	var socket = io('http://85.24.190.138:3002');
+//var socket = io.connect('http://85.24.190.138:3002', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling']});
+
+	socket.on('connect', function(args) {
+		console.log('Connected.');
+	});
 
 	socket.on('status', function(args) {
 		console.log(args);

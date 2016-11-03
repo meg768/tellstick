@@ -102,10 +102,14 @@ var App = function() {
 	}
 
 	function run(port) {
-//		var app = require('http').createServer();
-//		var io = require('socket.io')(app);
+		//var app = require('http').createServer();
+		var SocketIO = require('socket.io');
+		var io = new SocketIO();
 
-		var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
+		io.listen(port, function() {
+			console.log('Listening on port', port);
+		});
+		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
 
 
 		io.on('connection', function(socket) {
