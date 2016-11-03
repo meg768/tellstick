@@ -110,6 +110,13 @@ var App = function() {
 		};
 
 		io.on('connection', function(socket) {
+
+			console.log('A connection arrived...', socked.id);
+
+			socket.on('disconnect', function() {
+				console.log('Disconnect from', socket.id);
+			});
+
 			socket.on('turnOff', function(deviceName) {
 				if (params.name) {
 					console.log('Turning off %s...', deviceName);
