@@ -164,7 +164,7 @@ var App = function() {
 			params.type = device.type;
 
 			console.log(params);
-			io.sockets.emit('status', params);
+			io.sockets.emit('tellstick', params);
 		});
 
 
