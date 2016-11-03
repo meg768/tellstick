@@ -34,6 +34,7 @@ var App = function() {
 
 			telldus.getDevicesSync().forEach(function(device) {
 				_devices[device.name] = device;
+				_devices[device.id] = device;
 			});
 		}
 
