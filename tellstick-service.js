@@ -132,17 +132,23 @@ var App = function() {
 
 			var device = findDevice(id);
 
-			var params = {};
-			params.id = id;
-			params.name = device.name;
-			params.state = status.name;
-			params.type = device.type;
+			if (device != undefined) {
+				var params = {};
+				params.id = id;
+				params.name = device.name;
+				params.state = status.name;
+				params.type = device.type;
 
-			setTimeout(function() {
-				console.log(params);
-				namespace.emit('tellstick', params);
+				setTimeout(function() {
+					console.log(params);
+					namespace.emit('tellstick', params);
 
-			}, 1);
+				}, 1);
+
+			}
+			else {
+				console.log('Device', id, 'not found.');
+			}
 		});
 
 
