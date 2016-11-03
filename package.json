@@ -1,5 +1,5 @@
 {
-  "name": "tellstick-service",
+  "name": "tellstick-socket",
   "version": "1.0.0",
   "description": "",
   "main": "tellstick-service.js",
@@ -8,18 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meg768/tellstick-service.git"
+    "url": "git+https://github.com/meg768/tellstick-socket.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/meg768/tellstick-service/issues"
+    "url": "https://github.com/meg768/tellstick-socket/issues"
   },
-  "homepage": "https://github.com/meg768/tellstick-service#readme",
+  "homepage": "https://github.com/meg768/tellstick-socket#readme",
   "dependencies": {
     "commander": "^2.9.0",
     "socket.io": "^1.5.1",
-    "socket.io-client": "^1.5.1",
     "telldus": "^1.1.0",
     "yow": "^1.0.25"
   }
