@@ -106,7 +106,7 @@ var App = function() {
 		var SocketIO = require('socket.io');
 
 		var app = require('http').createServer(function(){});
-		var io = require('socket.io')(app);
+		var io = require('socket.io')(app, { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] });
 
 		app.listen(port, function() {
 			console.log('Listening on port', port);
