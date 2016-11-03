@@ -117,8 +117,9 @@ var App = function() {
 		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(8080);
 		//var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
 
+		var namespace = io.of('/tellstick');
 
-		io.of('/tellstick').on('connection', function(socket) {
+		namespace.on('connection', function(socket) {
 
 			console.log('A connection arrived...', socket.id);
 
@@ -170,7 +171,7 @@ var App = function() {
 			params.type = device.type;
 
 			console.log(params);
-			io.emit('tellstick', params);
+			namespace.emit('tellstick', params);
 		});
 
 
