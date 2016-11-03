@@ -28,15 +28,23 @@ var App = function() {
 	var _devices = undefined;
 
 	function getDevices() {
-		if (_devices == undefined)
-			_devices = telldus.getDevicesSync();
+		if (_devices == undefined) {
+
+			_devices = {};
+
+			telldus.getDevicesSync().forEach(function(device) {
+				_devices[device.name] = device;
+			});
+		}
 
 		return _devices;
 	}
 
-	function findDevice(id) {
+	function findDevice(deviceName) {
 		var devices = getDevices();
 
+		return devices[deviceName];
+/*
 		if (isObject(id) && id.id != undefined)
 			id = id.id;
 
@@ -49,7 +57,7 @@ var App = function() {
 				return device;
 			}
 		}
-
+*/
 	}
 
 	function registerDevices() {
@@ -119,6 +127,24 @@ var App = function() {
 
 		var namespace = io.of('/tellstick');
 
+		telldus.addDeviceEventListener(function(id, status) {
+
+			var device = findDevice(id);
+
+			var params = {};
+			params.id = id;
+			params.name = device.name;
+			params.state = status.name;
+			params.type = device.type;
+
+			setTimeout(function() {
+				console.log(params);
+				namespace.emit('tellstick', params);
+
+			}, 1);
+		});
+
+
 		namespace.on('connection', function(socket) {
 
 			console.log('A connection arrived...', socket.id);
@@ -171,22 +197,6 @@ var App = function() {
 
 		}, 1000);
 */
-		telldus.addDeviceEventListener(function(id, status) {
-
-			var device = findDevice(id);
-
-			var params = {};
-			params.id = id;
-			params.name = device.name;
-			params.state = status.name;
-			params.type = device.type;
-
-			setTimeout(function() {
-				console.log(params);
-				namespace.emit('tellstick', params);
-
-			}, 1);
-		});
 
 
 	}
