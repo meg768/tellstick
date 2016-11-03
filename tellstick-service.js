@@ -102,12 +102,11 @@ var App = function() {
 	}
 
 	function run(port) {
-		var app = require('http').createServer();
-		var io = require('socket.io')(app);
+//		var app = require('http').createServer();
+//		var io = require('socket.io')(app);
 
-		function handler() {
+		var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(port);
 
-		};
 
 		io.on('connection', function(socket) {
 
@@ -162,11 +161,6 @@ var App = function() {
 
 			console.log(params);
 			io.sockets.emit('status', params);
-		});
-
-
-		app.listen(port, function() {
-			console.log('Listening on port', port);
 		});
 
 
