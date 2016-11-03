@@ -165,6 +165,7 @@ var App = function() {
 
 			console.log(params);
 			io.sockets.emit('tellstick', params);
+			console.log('Sent!');
 		});
 
 
