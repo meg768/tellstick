@@ -159,7 +159,7 @@ var App = function() {
 
 
 		});
-
+/*
 		setInterval(function(){
 			var params = {};
 			params.id = 34;
@@ -170,7 +170,7 @@ var App = function() {
 			console.log(params);
 
 		}, 1000);
-
+*/
 		telldus.addDeviceEventListener(function(id, status) {
 
 			var device = findDevice(id);
