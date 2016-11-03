@@ -160,6 +160,17 @@ var App = function() {
 
 		});
 
+		setInterval(function(){
+			var params = {};
+			params.id = 34;
+			params.name = 'MEG';
+			params.state = 'ON';
+			params.type = 'DEVICE';
+			namespace.emit('tellstick', params);
+			console.log(params);
+
+		}, 1000);
+/*
 		telldus.addDeviceEventListener(function(id, status) {
 
 			var device = findDevice(id);
@@ -173,7 +184,7 @@ var App = function() {
 			console.log(params);
 			namespace.emit('tellstick', params);
 		});
-
+*/
 
 
 	}
