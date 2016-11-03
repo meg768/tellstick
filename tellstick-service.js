@@ -170,7 +170,7 @@ var App = function() {
 			console.log(params);
 
 		}, 1000);
-/*
+
 		telldus.addDeviceEventListener(function(id, status) {
 
 			var device = findDevice(id);
@@ -181,10 +181,12 @@ var App = function() {
 			params.state = status.name;
 			params.type = device.type;
 
-			console.log(params);
-			namespace.emit('tellstick', params);
+			setTimeout(function() {
+				console.log(params);
+				namespace.emit('tellstick', params);
+
+			}, 1);
 		});
-*/
 
 
 	}
