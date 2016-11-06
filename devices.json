@@ -2,6 +2,10 @@
 	"devices": [
 		{
 			"name": "FK-00-01",
+
+			"location": "Fjärrkontroll FK-00",
+			"description": "01",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -12,6 +16,10 @@
 		},
 		{
 			"name": "FK-00-02",
+
+			"location": "Fjärrkontroll FK-00",
+			"description": "02",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -22,6 +30,11 @@
 		},
 		{
 			"name": "FK-00-03",
+
+			"location": "Fjärrkontroll FK-00",
+			"description": "03",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -33,6 +46,10 @@
 
 		{
 			"name": "FK-01-01",
+
+			"location": "Källaren",
+			"description": "Alla lampor",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -43,6 +60,11 @@
 		},
 		{
 			"name": "FK-01-02",
+
+			"location": "Källaren",
+			"description": "Främre lampor",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -53,6 +75,11 @@
 		},
 		{
 			"name": "FK-01-03",
+
+			"location": "Kontoret",
+			"description": "Bakre lampor",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -64,6 +91,11 @@
 
 		{
 			"name": "FK-02-01",
+
+			"location": "Källaren",
+			"description": "Alla lampor",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -74,6 +106,11 @@
 		},
 		{
 			"name": "FK-02-02",
+
+			"location": "Källaren",
+			"description": "Främre lampor",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -84,6 +121,11 @@
 		},
 		{
 			"name": "FK-02-03",
+
+			"location": "Källaren",
+			"description": "Bakre lampor",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -95,8 +137,13 @@
 
 		{
 			"name": "RV-01",
+
+			"location": "Kontoret",
+			"description": "Rörelsevakt",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
+
 			"parameters": {
 				"house": "15452146",
 				"unit": "16",
@@ -107,6 +154,11 @@
 
 		{
 			"name": "RV-02",
+
+			"location": "Simulering",
+			"description": "Rörelsevakt i källaren",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -117,6 +169,10 @@
 		},
 		{
 			"name": "SR-01",
+
+			"location": "Simulering",
+			"description": "Skymningsrelä",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -127,6 +183,10 @@
 		},
 		{
 			"name": "VS-01",
+
+			"location": "Bottenvåning",
+			"description": "Terassen",
+
 			"comment": "Terassen",
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -138,7 +198,11 @@
 		},
 		{
 			"name": "VS-02",
-			"comment": "Ingen aning!",
+
+			"location": "Bottenvåning",
+			"description": "Ingen aning!",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -149,7 +213,10 @@
 		},
 		{
 			"name": "VS-03",
-			"comment": "Matrummet",
+
+			"location": "Bottenvåning",
+			"description": "Matrummet",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -160,7 +227,11 @@
 		},
 		{
 			"name": "VS-04",
-			"comment": "Stora rummet",
+
+			"location": "Bottenvåning",
+			"description": "Stora rummet",
+
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -171,7 +242,10 @@
 		},
 		{
 			"name": "RK-01",
-			"comment": "Ringklockan",
+
+			"location": "Bottenvåning",
+			"description": "Ringklocka",
+
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {

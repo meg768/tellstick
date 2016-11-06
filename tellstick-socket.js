@@ -47,41 +47,41 @@ var App = function() {
 
 	}
 
-	function registerDevices() {
-
-
+	function getConfig() {
 		var fileName = Path.join(__dirname, 'devices.json');
 
-		if (fileExists(fileName)) {
-
-			var devices = readJSON(fileName).devices;
-
-			if (devices == undefined) {
-				throw new Error('Devices section missing in file.');
-			}
-
-			telldus.getDevicesSync().forEach(function(device) {
-				telldus.removeDeviceSync(device.id);
-			});
-
-			for (var index in devices) {
-				var device = devices[index];
-
-				var id = telldus.addDeviceSync();
-
-				telldus.setNameSync(id, device.name);
-				telldus.setProtocolSync(id, device.protocol);
-				telldus.setModelSync(id, device.model);
-
-				for (var parameterName in device.parameters) {
-					telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
-
-				}
-			}
-
-		}
-		else {
+		if (!fileExists(fileName)) {
 			throw new Error(sprintf('File \'%s\' not found.', fileName));
+		}
+
+		return readJSON(fileName);
+	}
+
+	function registerDevices() {
+
+		var config = getConfig();
+		var devices = config.devices;
+
+		if (devices == undefined)
+			throw new Error('Devices section missing in file.');
+
+		telldus.getDevicesSync().forEach(function(device) {
+			telldus.removeDeviceSync(device.id);
+		});
+
+		for (var index in devices) {
+			var device = devices[index];
+
+			var id = telldus.addDeviceSync();
+
+			telldus.setNameSync(id, device.name);
+			telldus.setProtocolSync(id, device.protocol);
+			telldus.setModelSync(id, device.model);
+
+			for (var parameterName in device.parameters) {
+				telldus.setDeviceParameterSync(id, parameterName, device.parameters[parameterName].toString());
+
+			}
 		}
 
 	}
@@ -138,6 +138,13 @@ var App = function() {
 				console.log('Disconnect from', socket.id);
 			});
 
+			socket.on('getDevices', function() {
+				var config = getConfig();
+				var devices = config.devices;
+
+				socket.emit('devices', devices);
+			})
+
 			socket.on('turnOff', function(deviceName) {
 				if (deviceName) {
 					console.log('Turning off %s...', deviceName);
@@ -151,7 +158,7 @@ var App = function() {
 					}
 
 				}
-			})
+			});
 
 			socket.on('turnOn', function(deviceName) {
 				if (deviceName) {
@@ -222,30 +229,3 @@ var App = function() {
 };
 
 new App();
-
-
-
-/*
-
-var App = function() {
-	//  	var socket = io('http://85.24.190.138:3002');
-
-	var io = require('socket.io-client');
-	//var socket = io('http://10.0.1.54:3002');
-	var socket = io('http://85.24.190.138:3002/tellstick');
-	//var socket = io.connect('http://10.0.1.54:3002', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling']});
-
-	socket.on('connect', function(args) {
-		console.log('Connected.');
-	});
-
-	socket.on('tellstick', function(args) {
-		console.log(args);
-	});
-
-
-};
-
-new App();
-
-*/
