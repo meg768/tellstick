@@ -138,11 +138,15 @@ var App = function() {
 				console.log('Disconnect from', socket.id);
 			});
 
-			socket.on('getDevices', function() {
+			socket.on('getDevices', function(emitName) {
+
+				if (emitName == undefined)
+					emitName = 'devices';
+
 				var config = getConfig();
 				var devices = config.devices;
 
-				socket.emit('devices', devices);
+				socket.emit(emitName, devices);
 			})
 
 			socket.on('turnOff', function(deviceName) {
