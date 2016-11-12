@@ -19,7 +19,7 @@ var Module = new function() {
 			telldus.turnOffSync(device.id);
 		}
 		catch(error) {
-			console.log(error);
+			console.log(error.message);
 		}
 	}
 

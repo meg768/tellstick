@@ -73,6 +73,7 @@ var App = function() {
 			args.command(require('./commands/server.js'));
 
 			args.help();
+			args.demand(1);
 
 			args.argv;
 
