@@ -12,6 +12,7 @@ var Module = new function() {
 	function defineArgs(args) {
 
 		args.option('port', {alias: 'p', describe:'Listen to specified port', default:3002});
+		args.option('namespace', {alias: 'n', describe:'Use the specified namespace', default:'tellstick'});
 		args.wrap(null);
 
 	}
@@ -41,12 +42,18 @@ var Module = new function() {
 
 		var app = require('http').createServer(function(){});
 		var io = require('socket.io')(app);
+		var namespace = isString(argv.namespace) ? argv.namespace : '';
+
+		if (namespace != '')
+			io = io.of('/' + argv.namespace);
 
 		app.listen(argv.port, function() {
-			console.log('Listening on port', argv.port, '...');
+			if (namespace == '')
+				console.log(sprintf('Listening on port %d...', argv.port));
+			else
+				console.log(sprintf('Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
 		});
 
-		var namespace = io.of('/tellstick');
 
 		telldus.addDeviceEventListener(function(id, status) {
 
@@ -61,7 +68,7 @@ var Module = new function() {
 
 				setTimeout(function() {
 					console.log(params);
-					namespace.emit('status', params);
+					io.emit('status', params);
 				}, 0);
 
 			}
@@ -71,7 +78,7 @@ var Module = new function() {
 		});
 
 
-		namespace.on('connection', function(socket) {
+		io.on('connection', function(socket) {
 
 			console.log('A connection arrived...', socket.id);
 

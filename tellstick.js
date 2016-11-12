@@ -59,21 +59,28 @@ var App = function() {
 	}
 
 	function run() {
-		registerDevices();
+		try {
+			registerDevices();
 
-		var args = require('yargs');
+			var args = require('yargs');
 
-		args.usage('Usage: $0 <command> [options]')
+			args.usage('Usage: $0 <command> [options]')
 
-		args.command(require('./commands/off.js'));
-		args.command(require('./commands/on.js'));
-		args.command(require('./commands/scan.js'));
-		args.command(require('./commands/list.js'));
-		args.command(require('./commands/server.js'));
+			args.command(require('./commands/off.js'));
+			args.command(require('./commands/on.js'));
+			args.command(require('./commands/scan.js'));
+			args.command(require('./commands/list.js'));
+			args.command(require('./commands/server.js'));
 
-		args.help();
+			args.help();
 
-		args.argv;
+			args.argv;
+
+		}
+		catch(error) {
+			console.log(error.message);
+			process.exit(-1);
+		}
 
 	};
 
