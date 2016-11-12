@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/meg768/tellstick-socket#readme",
   "dependencies": {
-    "commander": "^2.9.0",
     "socket.io": "^1.5.1",
     "telldus": "^1.1.0",
+    "text-table": "^0.2.0",
+    "yargs": "^6.3.0",
     "yow": "^1.0.25"
   }
 }
