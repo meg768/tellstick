@@ -1,23 +1,25 @@
-#!/usr/bin/env node
-
 var Path = require('path');
 var sprintf = require('yow').sprintf;
 var fileExists = require('yow').fileExists;
-var telldus = require('telldus');
-var isObject = require('yow').isObject;
-var isString = require('yow').isString;
 var readJSON = require('yow').readJSON;
-var redirectLogs = require('yow').redirectLogs;
-var prefixLogs = require('yow').prefixLogs;
+var telldus = require('telldus');
 
-var App = function() {
+
+var Module = new function() {
+
+	function defineArgs(args) {
+
+		args.option('duration', {alias: 'd', describe:'Scan for the specified number of seconds', default:120});
+		args.wrap(null);
+
+	}
 
 
 	function registerDevices() {
 
 
 		function getConfig() {
-			var fileName = Path.join(__dirname, 'devices.json');
+			var fileName = Path.join(__dirname, '../devices.json');
 
 			if (!fileExists(fileName)) {
 				throw new Error(sprintf('File \'%s\' not found.', fileName));
@@ -46,6 +48,8 @@ var App = function() {
 
 			var id = telldus.addDeviceSync();
 
+			console.log(sprintf('Registering device \'%s\'...', device.name));
+
 			telldus.setNameSync(id, device.name);
 			telldus.setProtocolSync(id, device.protocol);
 			telldus.setModelSync(id, device.model);
@@ -58,35 +62,17 @@ var App = function() {
 
 	}
 
-	function run() {
-		try {
-			//registerDevices();
 
-			var args = require('yargs');
+	function run(argv) {
 
-			args.usage('Usage: $0 <command> [options]')
+		registerDevices();
+	}
 
-			args.command(require('./commands/off.js'));
-			args.command(require('./commands/on.js'));
-			args.command(require('./commands/scan.js'));
-			args.command(require('./commands/list.js'));
-			args.command(require('./commands/server.js'));
-			args.command(require('./commands/register.js'));
+	module.exports.command  = 'register';
+	module.exports.describe = 'Registers devices specified in devices.json';
+	module.exports.builder  = defineArgs;
+	module.exports.handler  = run;
 
-			args.help();
-			args.demand(1);
 
-			args.argv;
 
-		}
-		catch(error) {
-			console.log(error.message);
-			process.exit(-1);
-		}
-
-	};
-
-	run();
 };
-
-new App();
