@@ -1,4 +1,6 @@
 var sprintf = require('yow').sprintf;
+var fileExists = require('yow').fileExists;
+var readJSON = require('yow').readJSON;
 var telldus = require('telldus');
 
 
@@ -27,4 +29,16 @@ var getDevice = module.exports.getDevice = function(id) {
 		throw new Error(sprintf('Device %s not defined.', id.toString()));
 	else
 		return device;
+}
+
+
+var getConfig = module.exports.getConfig = function() {
+	var Path = require('path');
+	var fileName = Path.join(__dirname, '../devices.json');
+
+	if (!fileExists(fileName)) {
+		throw new Error(sprintf('File \'%s\' not found.', fileName));
+	}
+
+	return readJSON(fileName);
 }

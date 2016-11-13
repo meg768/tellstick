@@ -4,29 +4,19 @@ var fileExists = require('yow').fileExists;
 var readJSON = require('yow').readJSON;
 var telldus = require('telldus');
 
+var getConfig = require('../scripts/helper.js').getConfig;
+
 
 var Module = new function() {
 
 	function defineArgs(args) {
 
-		args.option('duration', {alias: 'd', describe:'Scan for the specified number of seconds', default:120});
 		args.wrap(null);
 
 	}
 
 
 	function registerDevices() {
-
-
-		function getConfig() {
-			var fileName = Path.join(__dirname, '../devices.json');
-
-			if (!fileExists(fileName)) {
-				throw new Error(sprintf('File \'%s\' not found.', fileName));
-			}
-
-			return readJSON(fileName);
-		}
 
 		var config = getConfig();
 		var devices = config.devices;

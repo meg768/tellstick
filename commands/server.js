@@ -5,6 +5,8 @@ var isObject = require('yow').isObject;
 var isString = require('yow').isString;
 var telldus = require('telldus');
 
+var getConfig = require('../scripts/helper.js').getConfig;
+
 var Module = new function() {
 
 	var _devices = undefined;
@@ -49,9 +51,9 @@ var Module = new function() {
 
 		app.listen(argv.port, function() {
 			if (namespace == '')
-				console.log(sprintf('Listening on port %d...', argv.port));
+				console.log(sprintf('Server started. Listening on port %d...', argv.port));
 			else
-				console.log(sprintf('Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
+				console.log(sprintf('Server started. Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
 		});
 
 
