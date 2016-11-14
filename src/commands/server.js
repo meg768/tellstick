@@ -6,11 +6,13 @@ var Path = require('path');
 var isObject = require('yow').isObject;
 var isString = require('yow').isString;
 var redirectLogs = require('yow').redirectLogs;
+var prefixLogs = require('yow').prefixLogs;
 
 var Schedule = require('node-schedule');
 var telldus = require('telldus');
 
 var getConfig = require('../scripts/helper.js').getConfig;
+
 
 var Module = new function() {
 
@@ -32,7 +34,6 @@ var Module = new function() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
 		rule.minute = range(0, 60, 5);
-console.log(rule.minute);
 
 		Schedule.scheduleJob(rule, function() {
 			var device = findDevice(_pingDeviceName);
@@ -95,6 +96,8 @@ console.log(rule.minute);
 			var logFile = Path.join(__dirname, Path.join('../..', 'tellstick.log'));
 			redirectLogs(logFile);
 		}
+
+		prefixLogs();
 
 		if (namespace != '')
 			io = io.of('/' + argv.namespace);
