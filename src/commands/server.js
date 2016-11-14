@@ -5,6 +5,8 @@ var Path = require('path');
 var isObject = require('yow').isObject;
 var isString = require('yow').isString;
 var redirectLogs = require('yow').redirectLogs;
+
+var Schedule = require('node-schedule');
 var telldus = require('telldus');
 
 var getConfig = require('../scripts/helper.js').getConfig;
@@ -12,6 +14,8 @@ var getConfig = require('../scripts/helper.js').getConfig;
 var Module = new function() {
 
 	var _devices = undefined;
+	var _pingTime = new Date();
+	var _pingDeviceName = 'PS-01';
 
 	function defineArgs(args) {
 
@@ -20,6 +24,40 @@ var Module = new function() {
 		args.option('namespace', {alias: 'n', describe:'Use the specified namespace', default:'tellstick'});
 		args.wrap(null);
 
+	}
+
+	function enablePing() {
+		var timeout = 10000;
+		var rule    = new Schedule.RecurrenceRule();
+	//	rule.minute = 1;
+		rule.second = [0, 30];
+
+		Schedule.scheduleJob(rule, function() {
+			console.log('Checking up...');
+			var device = findDevice(_pingDeviceName);
+
+			if (device != undefined) {
+				console.log(sprintf('Pinging device %s.', _pingDeviceName));
+
+				_pingTime = new Date();
+				telldus.turnOnSync(device.id);
+
+				setTimeout(function() {
+					var now = new Date();
+					var delta = now - _pingTime;
+
+					if (delta >= timeout) {
+						console.log('Tellstick not responding.');
+					}
+
+				}, timeout);
+			}
+		});
+
+	}
+
+	function reboot() {
+		console.log('Reboot is needed!!');
 	}
 
 	function getDevices() {
@@ -64,6 +102,7 @@ var Module = new function() {
 				console.log(sprintf('Server started. Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
 		});
 
+		enablePing();
 
 		telldus.addDeviceEventListener(function(id, status) {
 
@@ -71,10 +110,12 @@ var Module = new function() {
 
 			if (device != undefined) {
 				var params = {};
-				params.id = id;
-				params.name = device.name;
+				params.id    = id;
+				params.name  = device.name;
 				params.state = status.name;
-				params.type = device.type;
+				params.type  = device.type;
+
+				_pingTime = new Date();
 
 				setTimeout(function() {
 					console.log(params);
