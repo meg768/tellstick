@@ -32,6 +32,7 @@ var Module = new function() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
 		rule.minute = range(0, 60, 5);
+console.log(rule.minute);
 
 		Schedule.scheduleJob(rule, function() {
 			var device = findDevice(_pingDeviceName);
