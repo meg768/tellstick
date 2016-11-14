@@ -21,6 +21,7 @@ var Module = new function() {
 
 		args.option('log', {alias: 'l', describe:'Log output to file'});
 		args.option('port', {alias: 'p', describe:'Listen to specified port', default:3002});
+		args.option('ping', {alias: 'P', describe:'Check status by pinging itself', default:true});
 		args.option('namespace', {alias: 'n', describe:'Use the specified namespace', default:'tellstick'});
 		args.wrap(null);
 
@@ -33,7 +34,6 @@ var Module = new function() {
 		rule.second = [0, 30];
 
 		Schedule.scheduleJob(rule, function() {
-			console.log('Checking up...');
 			var device = findDevice(_pingDeviceName);
 
 			if (device != undefined) {
@@ -51,6 +51,9 @@ var Module = new function() {
 					}
 
 				}, timeout);
+			}
+			else {
+				console.log('Ping device not found.');
 			}
 		});
 
@@ -102,7 +105,8 @@ var Module = new function() {
 				console.log(sprintf('Server started. Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
 		});
 
-		enablePing();
+		if (argv.ping)
+			enablePing();
 
 		telldus.addDeviceEventListener(function(id, status) {
 
