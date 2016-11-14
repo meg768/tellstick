@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var sprintf = require('yow').sprintf;
+var range = require('yow').range;
 var Path = require('path');
 var isObject = require('yow').isObject;
 var isString = require('yow').isString;
@@ -30,8 +31,7 @@ var Module = new function() {
 	function enablePing() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
-	//	rule.minute = 1;
-		rule.second = [0, 30];
+		rule.minute = range(0, 60, 5);
 
 		Schedule.scheduleJob(rule, function() {
 			var device = findDevice(_pingDeviceName);
