@@ -107,6 +107,21 @@ var Module = new function() {
 				socket.emit(emitName, devices);
 			})
 
+			socket.on('bell', function(deviceName) {
+				if (deviceName) {
+					console.log('Ringing %s...', deviceName);
+					var device = findDevice(deviceName);
+
+					if (device != undefined) {
+						telldus.bellSync(device.id);
+					}
+					else {
+						console.log('Device %s not found.', deviceName);
+					}
+
+				}
+			});
+
 			socket.on('turnOff', function(deviceName) {
 				if (deviceName) {
 					console.log('Turning off %s...', deviceName);
