@@ -50,7 +50,7 @@ var Module = new function() {
 		var namespace = isString(argv.namespace) ? argv.namespace : '';
 
 		if (argv.log) {
-			var logFile = Path.join(__dirname, Path.join('..', 'tellstick.log'));
+			var logFile = Path.join(__dirname, Path.join('../..', 'tellstick.log'));
 			redirectLogs(logFile);
 		}
 

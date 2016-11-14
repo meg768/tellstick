@@ -5,19 +5,21 @@ var sprintf = require('yow').sprintf;
 var App = function() {
 
 
+	this.fileName = __filename;
+
 	function run() {
 		try {
 			var args = require('yargs');
 
 			args.usage('Usage: $0 <command> [options]')
 
-			args.command(require('./commands/off.js'));
-			args.command(require('./commands/on.js'));
-			args.command(require('./commands/bell.js'));
-			args.command(require('./commands/scan.js'));
-			args.command(require('./commands/list.js'));
-			args.command(require('./commands/server.js'));
-			args.command(require('./commands/register.js'));
+			args.command(require('./src/commands/off.js'));
+			args.command(require('./src/commands/on.js'));
+			args.command(require('./src/commands/bell.js'));
+			args.command(require('./src/commands/scan.js'));
+			args.command(require('./src/commands/list.js'));
+			args.command(require('./src/commands/server.js'));
+			args.command(require('./src/commands/register.js'));
 
 			args.help();
 
