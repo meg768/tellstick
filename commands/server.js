@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 var sprintf = require('yow').sprintf;
+var Path = require('path');
 var isObject = require('yow').isObject;
 var isString = require('yow').isString;
+var redirectLogs = require('yow').redirectLogs;
 var telldus = require('telldus');
 
 var getConfig = require('../scripts/helper.js').getConfig;
@@ -13,6 +15,7 @@ var Module = new function() {
 
 	function defineArgs(args) {
 
+		args.option('log', {alias: 'l', describe:'Log output to file'});
 		args.option('port', {alias: 'p', describe:'Listen to specified port', default:3002});
 		args.option('namespace', {alias: 'n', describe:'Use the specified namespace', default:'tellstick'});
 		args.wrap(null);
@@ -45,6 +48,11 @@ var Module = new function() {
 		var app = require('http').createServer(function(){});
 		var io = require('socket.io')(app);
 		var namespace = isString(argv.namespace) ? argv.namespace : '';
+
+		if (argv.log) {
+			var logFile = Path.join(__dirname, Path.join('..', 'tellstick.log'));
+			redirectLogs(logFile);
+		}
 
 		if (namespace != '')
 			io = io.of('/' + argv.namespace);

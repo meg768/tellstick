@@ -59,7 +59,7 @@ var Module = new function() {
 	}
 
 	module.exports.command  = 'register';
-	module.exports.describe = 'Registers devices specified in devices.json';
+	module.exports.describe = 'Registers devices specified in tellstick.json';
 	module.exports.builder  = defineArgs;
 	module.exports.handler  = run;
 

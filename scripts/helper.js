@@ -34,7 +34,7 @@ var getDevice = module.exports.getDevice = function(id) {
 
 var getConfig = module.exports.getConfig = function() {
 	var Path = require('path');
-	var fileName = Path.join(__dirname, '../devices.json');
+	var fileName = Path.join(__dirname, '../tellstick.json');
 
 	if (!fileExists(fileName)) {
 		throw new Error(sprintf('File \'%s\' not found.', fileName));
