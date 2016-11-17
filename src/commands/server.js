@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-var sprintf = require('yow').sprintf;
-var range = require('yow').range;
+var sprintf = require('yow/sprintf');
+var range = require('yow/range');
 var Path = require('path');
-var isObject = require('yow').isObject;
-var isString = require('yow').isString;
-var redirectLogs = require('yow').redirectLogs;
-var prefixLogs = require('yow').prefixLogs;
+var isObject = require('yow/is').isObject;
+var isString = require('yow/is').isString;
+var logs = require('yow/logs');
 
 var Schedule = require('node-schedule');
 var telldus = require('telldus');
@@ -30,6 +29,9 @@ var Module = new function() {
 
 	}
 
+	function reboot() {
+
+	}
 	function enablePing() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
@@ -94,10 +96,10 @@ var Module = new function() {
 
 		if (argv.log) {
 			var logFile = Path.join(__dirname, Path.join('../..', 'tellstick.log'));
-			redirectLogs(logFile);
+			logs.redirect(logFile);
 		}
 
-		prefixLogs();
+		logs.prefix();
 
 		if (namespace != '')
 			io = io.of('/' + argv.namespace);

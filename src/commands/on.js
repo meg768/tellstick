@@ -1,4 +1,4 @@
-var sprintf = require('yow').sprintf;
+var sprintf = require('yow/sprintf');
 var telldus = require('telldus');
 var helper  = require('../scripts/helper.js');
 

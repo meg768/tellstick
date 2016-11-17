@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var sprintf = require('yow').sprintf;
+var sprintf = require('yow/sprintf');
 
 var App = function() {
 

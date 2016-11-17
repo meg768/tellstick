@@ -1,7 +1,7 @@
 var Path = require('path');
-var sprintf = require('yow').sprintf;
-var fileExists = require('yow').fileExists;
-var readJSON = require('yow').readJSON;
+var sprintf = require('yow/sprintf');
+var fileExists = require('yow/fs').fileExists;
+var readJSON = require('yow/fs').readJSON;
 var telldus = require('telldus');
 
 var getConfig = require('../scripts/helper.js').getConfig;
