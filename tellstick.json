@@ -155,9 +155,8 @@
 		{
 			"name": "RV-02",
 
-			"location": "Simulering",
+			"location": "Källaren",
 			"description": "Rörelsevakt i källaren",
-
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -167,6 +166,22 @@
 				"group": "0"
 			}
 		},
+		
+		{
+			"name": "RV-03",
+
+			"location": "Bottenvåning",
+			"description": "Rörelsevakt i stora rummet",
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "62632946",
+				"unit": "16",
+				"group": "0"
+			}
+		},
+
 		{
 			"name": "SR-01",
 
