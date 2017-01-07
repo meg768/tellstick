@@ -241,6 +241,21 @@
 			}
 		},
 		{
+			"name": "VS-05",
+
+			"location": "Bottenvåning",
+			"description": "Larm på/av",
+
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "655218",
+				"unit": "1",
+				"group": "0"
+			}
+		},
+		{
 			"name": "RK-01",
 
 			"location": "Bottenvåning",
@@ -299,7 +314,7 @@
 				"group": "0"
 			}
 		}
-		
+
 
 	]
 }
