@@ -166,7 +166,7 @@
 				"group": "0"
 			}
 		},
-		
+
 		{
 			"name": "RV-03",
 
@@ -214,8 +214,8 @@
 		{
 			"name": "VS-02",
 
-			"location": "Bottenvåning",
-			"description": "Ingen aning!",
+			"location": "Snickarrummet",
+			"description": "Saftblandare",
 
 
 			"protocol": "arctech",
