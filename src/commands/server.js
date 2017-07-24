@@ -194,7 +194,7 @@ var Module = new function() {
 	}
 
 
-	module.exports.command  = 'serverv2 [options]';
+	module.exports.command  = 'server [options]';
 	module.exports.describe = 'Run as a server using socket.io';
 	module.exports.builder  = defineArgs;
 	module.exports.handler  = run;
