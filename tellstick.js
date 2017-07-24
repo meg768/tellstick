@@ -20,7 +20,6 @@ var App = function() {
 			args.command(require('./src/commands/list.js'));
 			args.command(require('./src/commands/server.js'));
 			args.command(require('./src/commands/register.js'));
-			args.command(require('./src/commands/serverv2.js'));
 
 			args.help();
 
