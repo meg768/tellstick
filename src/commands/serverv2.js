@@ -120,11 +120,13 @@ var Module = new function() {
 		});
 
 
-		socket.on('connection', function() {
+		socket.on('connect', function() {
 
 			console.log('Connected!');
 
 			// Register the service
+			console.log('Registering service');
+
 			socket.emit('service', 'tellstick', ['getDevices', 'bell', 'turnOn', 'turnOff'], {timeout:2000});
 		});
 
