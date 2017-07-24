@@ -22,9 +22,7 @@ var Module = new function() {
 	function defineArgs(args) {
 
 		args.option('log', {alias: 'l', describe:'Log output to file'});
-		args.option('port', {alias: 'p', describe:'Listen to specified port', default:3002});
 		args.option('ping', {alias: 'P', describe:'Check status by pinging itself', default:true});
-		args.option('namespace', {alias: 'n', describe:'Use the specified namespace', default:'tellstick'});
 		args.wrap(null);
 
 	}
@@ -90,26 +88,9 @@ var Module = new function() {
 
 	function run(argv) {
 
-		var app = require('http').createServer(function(){});
-		var io = require('socket.io')(app);
-		var namespace = isString(argv.namespace) ? argv.namespace : '';
-
-		if (argv.log) {
-			var logFile = Path.join(__dirname, Path.join('../..', 'tellstick.log'));
-			logs.redirect(logFile);
-		}
+		var socket = require('socket.io-client')('http://app-o.se/services');
 
 		logs.prefix();
-
-		if (namespace != '')
-			io = io.of('/' + argv.namespace);
-
-		app.listen(argv.port, function() {
-			if (namespace == '')
-				console.log(sprintf('Server started. Listening on port %d...', argv.port));
-			else
-				console.log(sprintf('Server started. Listening on port %d in namespace "%s"...', argv.port, argv.namespace));
-		});
 
 		if (argv.ping)
 			enablePing();
@@ -129,7 +110,7 @@ var Module = new function() {
 
 				setTimeout(function() {
 					console.log(params);
-					io.emit('status', params);
+					socket.emit('notify', 'status', params);
 				}, 0);
 
 			}
@@ -139,78 +120,81 @@ var Module = new function() {
 		});
 
 
-		io.on('connection', function(socket) {
+		socket.on('connect', function() {
 
-			console.log('A connection arrived...', socket.id);
+			console.log('Connected!');
 
-			socket.on('disconnect', function() {
-				console.log('Disconnect from', socket.id);
-			});
+			// Register the service
+			console.log('Registering service');
 
-			socket.on('getDevices', function(emitName) {
-
-				if (emitName == undefined)
-					emitName = 'devices';
-
-				var config = getConfig();
-				var devices = config.devices;
-
-				socket.emit(emitName, devices);
-			})
-
-			socket.on('bell', function(deviceName) {
-				if (deviceName) {
-					console.log('Ringing %s...', deviceName);
-					var device = findDevice(deviceName);
-
-					if (device != undefined) {
-						telldus.bellSync(device.id);
-					}
-					else {
-						console.log('Device %s not found.', deviceName);
-					}
-
-				}
-			});
-
-			socket.on('turnOff', function(deviceName) {
-				if (deviceName) {
-					console.log('Turning off %s...', deviceName);
-					var device = findDevice(deviceName);
-
-					if (device != undefined) {
-						telldus.turnOffSync(device.id);
-					}
-					else {
-						console.log('Device %s not found.', deviceName);
-					}
-
-				}
-			});
-
-			socket.on('turnOn', function(deviceName) {
-				if (deviceName) {
-					console.log('Turning on %s...', deviceName);
-					var device = findDevice(deviceName);
-
-					if (device != undefined) {
-						telldus.turnOnSync(device.id);
-					}
-					else {
-						console.log('Device %s not found.', deviceName);
-					}
-
-				}
-			})
-
-
+			socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:2000});
 		});
 
+		socket.on('disconnect', function() {
+			console.log('Disconnect from', socket.id);
+		});
+
+		socket.on('devices', function(params, fn) {
+
+			var config = getConfig();
+			var devices = config.devices;
+
+			fn(devices);
+		})
+
+		socket.on('bell', function(deviceName, fn) {
+			if (deviceName) {
+				console.log('Ringing %s...', deviceName);
+				var device = findDevice(deviceName);
+
+				if (device != undefined) {
+					telldus.bellSync(device.id);
+				}
+				else {
+					console.log('Device %s not found.', deviceName);
+				}
+
+
+			}
+			fn({status:'OK'});
+		});
+
+		socket.on('turnOff', function(deviceName, fn) {
+			if (deviceName) {
+				console.log('Turning off %s...', deviceName);
+				var device = findDevice(deviceName);
+
+				if (device != undefined) {
+					telldus.turnOffSync(device.id);
+				}
+				else {
+					console.log('Device %s not found.', deviceName);
+				}
+
+			}
+			fn({status:'OK'});
+		});
+
+		socket.on('turnOn', function(deviceName, fn) {
+			if (deviceName) {
+				console.log('Turning on %s...', deviceName);
+				var device = findDevice(deviceName);
+
+				if (device != undefined) {
+					telldus.turnOnSync(device.id);
+				}
+				else {
+					console.log('Device %s not found.', deviceName);
+				}
+
+			}
+			fn({status:'OK'});
+		})
 
 	}
 
 
-	module.exports.command  = 'server [options]';
+	module.exports.command  = 'serverv2 [options]';
 	module.exports.describe = 'Run as a server using socket.io';
 	module.exports.builder  = defineArgs;
 	module.exports.handler  = run;
