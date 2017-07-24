@@ -127,14 +127,14 @@ var Module = new function() {
 			// Register the service
 			console.log('Registering service');
 
-			socket.emit('service', 'tellstick', ['getDevices', 'bell', 'turnOn', 'turnOff'], {timeout:2000});
+			socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:2000});
 		});
 
 		socket.on('disconnect', function() {
 			console.log('Disconnect from', socket.id);
 		});
 
-		socket.on('getDevices', function(params, fn) {
+		socket.on('devices', function(params, fn) {
 
 			var config = getConfig();
 			var devices = config.devices;
