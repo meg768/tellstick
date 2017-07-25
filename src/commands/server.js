@@ -127,7 +127,7 @@ var Module = new function() {
 			// Register the service
 			console.log('Registering service');
 
-			socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:2000});
+			socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:4000});
 		});
 
 		socket.on('disconnect', function() {
@@ -143,6 +143,8 @@ var Module = new function() {
 		})
 
 		socket.on('bell', function(deviceName, fn) {
+			fn({status:'OK'});
+
 			if (deviceName) {
 				console.log('Ringing %s...', deviceName);
 				var device = findDevice(deviceName);
@@ -156,10 +158,12 @@ var Module = new function() {
 
 
 			}
-			fn({status:'OK'});
 		});
 
 		socket.on('turnOff', function(deviceName, fn) {
+
+			fn({status:'OK'});
+
 			if (deviceName) {
 				console.log('Turning off %s...', deviceName);
 				var device = findDevice(deviceName);
@@ -172,10 +176,11 @@ var Module = new function() {
 				}
 
 			}
-			fn({status:'OK'});
 		});
 
 		socket.on('turnOn', function(deviceName, fn) {
+			fn({status:'OK'});
+
 			if (deviceName) {
 				console.log('Turning on %s...', deviceName);
 				var device = findDevice(deviceName);
@@ -188,7 +193,6 @@ var Module = new function() {
 				}
 
 			}
-			fn({status:'OK'});
 		})
 
 	}
