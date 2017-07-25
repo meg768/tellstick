@@ -198,7 +198,7 @@ var Module = new function() {
 				console.log('Invalid device:' deviceName);
 
 			}
-		});
+		};
 
 		socket.on('turnOn', function(params, fn) {
 			fn({status:'OK'});
@@ -227,7 +227,7 @@ var Module = new function() {
 				console.log('Invalid device:' deviceName);
 
 			}
-		});
+		)};
 */
 	}
 
