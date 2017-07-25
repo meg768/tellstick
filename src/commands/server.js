@@ -200,7 +200,7 @@ var Module = new function() {
 
 			}
 		)};
-
+*/
 		socket.on('turnOn', function(params, fn) {
 			fn({status:'OK'});
 
@@ -229,7 +229,7 @@ var Module = new function() {
 
 			}
 		)};
-		*/
+
 	}
 
 
