@@ -222,7 +222,11 @@ var Module = new function() {
 				}
 
 			}
-		})
+			else {
+				console.log('Invalid device:' deviceName);
+
+			}
+		});
 
 	}
 
