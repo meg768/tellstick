@@ -110,7 +110,7 @@ var Module = new function() {
 
 				setTimeout(function() {
 					console.log(params);
-					socket.emit('notify', 'status', params);
+					socket.emit('status', params);
 				}, 0);
 
 			}
