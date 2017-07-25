@@ -143,10 +143,18 @@ var Module = new function() {
 			fn(devices);
 		})
 
-		socket.on('bell', function(deviceName, fn) {
+		socket.on('bell', function(params, fn) {
 			fn({status:'OK'});
 
-			if (deviceName) {
+			var deviceName = undefined;
+
+			if (isString(params))
+				deviceName = params;
+
+			if (isObject(params))
+				deviceName = params.device;
+
+			if (isString(deviceName)) {
 				console.log('Ringing %s...', deviceName);
 				var device = findDevice(deviceName);
 
@@ -156,16 +164,26 @@ var Module = new function() {
 				else {
 					console.log('Device %s not found.', deviceName);
 				}
-
+			}
+			else {
+				console.log('Invalid device:' deviceName);
 
 			}
 		});
 
-		socket.on('turnOff', function(deviceName, fn) {
+		socket.on('turnOff', function(params, fn) {
 
 			fn({status:'OK'});
 
-			if (deviceName) {
+			var deviceName = undefined;
+
+			if (isString(params))
+				deviceName = params;
+
+			if (isObject(params))
+				deviceName = params.device;
+
+			if (isString(deviceName)) {
 				console.log('Turning off %s...', deviceName);
 				var device = findDevice(deviceName);
 
@@ -177,12 +195,24 @@ var Module = new function() {
 				}
 
 			}
+			else {
+				console.log('Invalid device:' deviceName);
+
+			}
 		});
 
-		socket.on('turnOn', function(deviceName, fn) {
+		socket.on('turnOn', function(params, fn) {
 			fn({status:'OK'});
 
-			if (deviceName) {
+			var deviceName = undefined;
+
+			if (isString(params))
+				deviceName = params;
+
+			if (isObject(params))
+				deviceName = params.device;
+
+			if (isString(deviceName)) {
 				console.log('Turning on %s...', deviceName);
 				var device = findDevice(deviceName);
 
