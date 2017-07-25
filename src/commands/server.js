@@ -169,7 +169,7 @@ var Module = new function() {
 			}
 
 		});
-
+/*
 
 		socket.on('turnOff', function(params, fn) {
 
@@ -229,6 +229,7 @@ var Module = new function() {
 
 			}
 		)};
+		*/
 	}
 
 
