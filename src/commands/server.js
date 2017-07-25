@@ -182,7 +182,7 @@ var Module = new function() {
 
 			if (isObject(params))
 				deviceName = params.device;
-
+/*
 			if (isString(deviceName)) {
 				console.log('Turning off %s...', deviceName);
 				var device = findDevice(deviceName);
@@ -199,6 +199,7 @@ var Module = new function() {
 				console.log('Invalid device:', deviceName);
 
 			}
+			*/
 		)};
 
 /*
