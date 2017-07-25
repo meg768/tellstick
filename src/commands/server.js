@@ -151,7 +151,7 @@ var Module = new function() {
 
 			if (isObject(params))
 				deviceName = params.device;
-/*
+
 			if (isString(deviceName)) {
 				console.log('Ringing %s...', deviceName);
 				var device = findDevice(deviceName);
@@ -164,13 +164,13 @@ var Module = new function() {
 				}
 			}
 			else {
-				console.log('Invalid device:' deviceName);
+				console.log('Invalid device:', deviceName);
 
 			}
-			*/
+
 		});
 
-/*
+
 		socket.on('turnOff', function(params, fn) {
 
 			fn({status:'OK'});
@@ -196,10 +196,10 @@ var Module = new function() {
 
 			}
 			else {
-				console.log('Invalid device:' deviceName);
+				console.log('Invalid device:', deviceName);
 
 			}
-		};
+		)};
 
 		socket.on('turnOn', function(params, fn) {
 			fn({status:'OK'});
@@ -225,11 +225,10 @@ var Module = new function() {
 
 			}
 			else {
-				console.log('Invalid device:' deviceName);
+				console.log('Invalid device:', deviceName);
 
 			}
 		)};
-*/
 	}
 
 
