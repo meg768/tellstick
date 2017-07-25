@@ -88,7 +88,7 @@ var Module = new function() {
 
 	function run(argv) {
 
-		var socket = require('socket.io-client')('http://app-o.se/services');
+		var socket = require('socket.io-client')('http://app-o.se/tellstick-service');
 
 		logs.prefix();
 
