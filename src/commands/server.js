@@ -168,7 +168,7 @@ var Module = new function() {
 
 			}
 		});
-
+/*
 		socket.on('turnOff', function(params, fn) {
 
 			fn({status:'OK'});
@@ -227,7 +227,7 @@ var Module = new function() {
 
 			}
 		});
-
+*/
 	}
 
 
