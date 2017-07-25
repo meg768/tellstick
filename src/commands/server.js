@@ -173,7 +173,7 @@ var Module = new function() {
 
 		socket.on('turnOff', function(params, fn) {
 
-			fn({status:'OK'});
+	//		fn({status:'OK'});
 /*
 			var deviceName = undefined;
 
@@ -201,7 +201,7 @@ var Module = new function() {
 
 			}
 			*/
-		)};
+		});
 
 /*
 		socket.on('turnOn', function(params, fn) {
