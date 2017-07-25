@@ -128,6 +128,7 @@ var Module = new function() {
 			//console.log('Registering service');
 
 			//socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:4000});
+			socket.emit('i-am-the-provider');
 		});
 
 		socket.on('disconnect', function() {
