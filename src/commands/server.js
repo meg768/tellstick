@@ -174,7 +174,7 @@ var Module = new function() {
 		socket.on('turnOff', function(params, fn) {
 
 			fn({status:'OK'});
-
+/*
 			var deviceName = undefined;
 
 			if (isString(params))
@@ -182,6 +182,7 @@ var Module = new function() {
 
 			if (isObject(params))
 				deviceName = params.device;
+*/
 /*
 			if (isString(deviceName)) {
 				console.log('Turning off %s...', deviceName);
