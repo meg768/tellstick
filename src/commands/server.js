@@ -27,9 +27,7 @@ var Module = new function() {
 
 	}
 
-	function reboot() {
 
-	}
 	function enablePing() {
 		var timeout = 10000;
 		var rule    = new Schedule.RecurrenceRule();
