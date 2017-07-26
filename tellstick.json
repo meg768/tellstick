@@ -47,7 +47,7 @@
 		{
 			"name": "FK-01-01",
 
-			"location": "Källaren",
+			"location": "Kontoret",
 			"description": "Alla lampor",
 
 			"protocol": "arctech",
@@ -61,8 +61,8 @@
 		{
 			"name": "FK-01-02",
 
-			"location": "Källaren",
-			"description": "Främre lampor",
+			"location": "Kontoret",
+			"description": "Sänglampa",
 
 
 			"protocol": "arctech",
@@ -77,7 +77,7 @@
 			"name": "FK-01-03",
 
 			"location": "Kontoret",
-			"description": "Bakre lampor",
+			"description": "Övriga lampor",
 
 
 			"protocol": "arctech",
@@ -156,7 +156,7 @@
 			"name": "RV-02",
 
 			"location": "Källaren",
-			"description": "Rörelsevakt i källaren",
+			"description": "Rörelsevakt",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -170,8 +170,8 @@
 		{
 			"name": "RV-03",
 
-			"location": "Bottenvåning",
-			"description": "Rörelsevakt i stora rummet",
+			"location": "Stora rummet",
+			"description": "Rörelsevakt",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -199,10 +199,9 @@
 		{
 			"name": "VS-01",
 
-			"location": "Bottenvåning",
-			"description": "Terassen",
+			"location": "Terassen",
+			"description": "Utebelysning",
 
-			"comment": "Terassen",
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
@@ -229,8 +228,8 @@
 		{
 			"name": "VS-03",
 
-			"location": "Bottenvåning",
-			"description": "Matrummet",
+			"location": "Matrummet",
+			"description": "Alla lampor",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -243,8 +242,8 @@
 		{
 			"name": "VS-04",
 
-			"location": "Bottenvåning",
-			"description": "Stora rummet",
+			"location": "Stora rummet",
+			"description": "Alla lampor",
 
 
 			"protocol": "arctech",
@@ -258,7 +257,7 @@
 		{
 			"name": "VS-05",
 
-			"location": "Bottenvåning",
+			"location": "Övrigt",
 			"description": "Larm på/av",
 
 
@@ -273,7 +272,7 @@
 		{
 			"name": "RK-01",
 
-			"location": "Bottenvåning",
+			"location": "Övrigt",
 			"description": "Ringklocka",
 
 			"protocol": "arctech",
@@ -288,8 +287,8 @@
 		{
 			"name": "PS-01",
 
-			"location": "",
-			"description": "",
+			"location": "Virtuella signaler",
+			"description": "Signal 1",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -303,8 +302,8 @@
 		{
 			"name": "PS-02",
 
-			"location": "",
-			"description": "",
+			"location": "Virtuella signaler",
+			"description": "Signal 2",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
@@ -318,8 +317,8 @@
 		{
 			"name": "PS-03",
 
-			"location": "",
-			"description": "",
+			"location": "Virtuella signaler",
+			"description": "Signal 3",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
