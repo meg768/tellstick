@@ -252,7 +252,7 @@ var Module = new function() {
 				}
 
 				if (!isInteger(state))
-					throw new Error(sprintf('Invalid state: %s', state));
+					throw new Error(sprintf('Invalid state "%s"', state));
 
 				if (state) {
 					console.log('Turning on %s...', device.name);
