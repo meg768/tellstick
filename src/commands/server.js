@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+var Path = require('path');
 var sprintf = require('yow/sprintf');
 var range = require('yow/range');
-var Path = require('path');
 var isObject = require('yow/is').isObject;
 var isString = require('yow/is').isString;
+var isInteger = require('yow/is').isInteger;
 var logs = require('yow/logs');
 
 var Schedule = require('node-schedule');
@@ -120,17 +121,13 @@ var Module = new function() {
 
 		socket.on('connect', function() {
 
-			console.log('Connected!');
+			console.log('Connected to socket server.');
 
-			// Register the service
-			//console.log('Registering service');
-
-			//socket.emit('service', 'tellstick', ['devices', 'bell', 'turnOn', 'turnOff'], {timeout:4000});
 			socket.emit('i-am-the-provider');
 		});
 
 		socket.on('disconnect', function() {
-			console.log('Disconnect from', socket.id);
+			console.log('Disconnected from socket server');
 		});
 
 		socket.on('devices', function(params, fn) {
@@ -230,6 +227,47 @@ var Module = new function() {
 			}
 		});
 
+		socket.on('setState', function(params, fn) {
+
+			try {
+				var device = findDevice(params.device);
+				var state  = undefined;
+
+				if (device == undefined)
+					throw new Error(sprintf('Invalid device name "%s".', params.device));
+
+				if (isString(params.state)) {
+					if (params.state.toUpperCase() == 'ON') {
+						state = 1;
+					}
+					else if (params.state.toUpperCase() == 'OFF') {
+						state = 0;
+					}
+				}
+				else {
+					state = parseInt(params.state);
+				}
+
+				if (!isInteger(state))
+					throw new Error(sprintf('Invalid state "%s"', state));
+
+				if (state) {
+					console.log('Turning on %s...', device.name);
+					telldus.turnOnSync(device.id);
+				}
+				else {
+					console.log('Turning off %s...', device.name);
+					telldus.turnOffSync(device.id);
+				}
+
+				fn({status:'OK'});
+
+			}
+			catch(error) {
+				fn({error:error.message});
+
+			}
+		});
 	}
 
 
