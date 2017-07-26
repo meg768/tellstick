@@ -92,7 +92,7 @@
 		{
 			"name": "FK-02-01",
 
-			"location": "Källaren",
+			"location": "Biorummet",
 			"description": "Alla lampor",
 
 
@@ -107,7 +107,7 @@
 		{
 			"name": "FK-02-02",
 
-			"location": "Källaren",
+			"location": "Biorummet",
 			"description": "Främre lampor",
 
 
@@ -122,7 +122,7 @@
 		{
 			"name": "FK-02-03",
 
-			"location": "Källaren",
+			"location": "Biorummet",
 			"description": "Bakre lampor",
 
 
