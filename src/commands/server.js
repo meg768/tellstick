@@ -243,6 +243,9 @@ var Module = new function() {
 					else if (params.state.toUpperCase() == 'OFF') {
 						state = 0;
 					}
+					else {
+						state = parseInt(params.state);
+					}
 				}
 				else {
 					state = parseInt(params.state);
