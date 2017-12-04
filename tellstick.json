@@ -339,8 +339,8 @@
 			"protocol": "arctech",
 			"model": "selflearning-switch",
 			"parameters": {
-				"house": "20000001",
-				"unit": "0",
+				"house": "57381702",
+				"unit": "16",
 				"group": "0"
 			}
 		}
