@@ -343,37 +343,8 @@
 				"unit": "0",
 				"group": "0"
 			}
-		},
-
-		{
-			"name": "XMAS-02",
-
-			"location": "Julbelysning",
-			"description": "Signal 2",
-
-			"protocol": "arctech",
-			"model": "selflearning-switch",
-			"parameters": {
-				"house": "20000002",
-				"unit": "0",
-				"group": "0"
-			}
-		},
-
-		{
-			"name": "XMAS-03",
-
-			"location": "Julbelysning",
-			"description": "Signal 3",
-
-			"protocol": "arctech",
-			"model": "selflearning-switch",
-			"parameters": {
-				"house": "20000003",
-				"unit": "0",
-				"group": "0"
-			}
 		}
+
 
 
 	]
