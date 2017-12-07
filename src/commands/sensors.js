@@ -23,6 +23,15 @@ var Module = new function() {
     function run(argv) {
 
         try {
+
+            telldus.getSensors(function(err, sensors) {
+                if (err) {
+                    console.log('Error: ' + err);
+                } else {
+                    // The list of sensors and their values is returned
+                    console.log(sensors);
+                }
+            });
             console.log(sprintf('Scanning for %d seconds...', argv.duration));
 
             telldus.addSensorEventListener(function(deviceId, protocol, model, type, value, timestamp) {
