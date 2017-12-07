@@ -8,24 +8,42 @@ var telldus = require('telldus');
 
 var Module = new function() {
 
-	function defineArgs(args) {
 
-		args.wrap(null);
+    function defineArgs(args) {
 
-	}
+        args.option('duration', {
+            alias: 'd',
+            describe: 'Scan for the specified number of seconds',
+            default: 120
+        });
+        args.wrap(null);
+
+    }
+
+    function run(argv) {
+
+        try {
+            console.log(sprintf('Scanning for %d seconds...', argv.duration));
+
+            telldus.addSensorEventListener(function(deviceId, protocol, model, type, value, timestamp) {
+                console.log('New sensor event received: ', deviceId, protocol, model, type, value, timestamp);
+            });
+
+            setTimeout(function() {}, argv.duration * 1000);
 
 
-	function run(argv)
-	{
-		var listener = telldus.addSensorEventListener(function(deviceId,protocol,model,type,value,timestamp) {
-		  console.log('New sensor event received: ',deviceId,protocol,model,type,value,timestamp);
-		});
-	}
+        } catch (error) {
+            console.log(error.stack);
+        }
 
-	module.exports.command  = 'sensors';
-	module.exports.describe = 'Listen for sensors';
-	module.exports.builder  = defineArgs;
-	module.exports.handler  = run;
+
+    }
+
+
+    module.exports.command = 'sensors';
+    module.exports.describe = 'Listen for sensors';
+    module.exports.builder = defineArgs;
+    module.exports.handler = run;
 
 
 
