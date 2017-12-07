@@ -29,7 +29,7 @@ var Module = new function() {
                     console.log('Error: ' + err);
                 } else {
                     // The list of sensors and their values is returned
-                    console.log(sensors);
+                    console.log(JSON.stringify(sensors, null, '  '));
                 }
             });
             console.log(sprintf('Scanning for %d seconds...', argv.duration));
