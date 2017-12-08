@@ -270,6 +270,39 @@
 			}
 		},
 		{
+			"name": "VS-06",
+
+			"location": "Kontoret",
+			"description": "Övrig belysning",
+
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "592186",
+				"unit": "2",
+				"group": "0"
+			}
+		},
+
+		{
+			"name": "VS-07",
+
+			"location": "Kontoret",
+			"description": "Sänglampa",
+
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "592186",
+				"unit": "1",
+				"group": "0"
+			}
+		},
+
+
+		{
 			"name": "RK-01",
 
 			"location": "Övrigt",
