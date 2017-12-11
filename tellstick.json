@@ -350,8 +350,8 @@
 		{
 			"name": "PS-02",
 
-			"location": "Virtuella signaler",
-			"description": "Signal 2",
+			"location": "Snickarrummet",
+			"description": "Snickarrummet",
 
 			"protocol": "arctech",
 			"model": "selflearning-switch",
