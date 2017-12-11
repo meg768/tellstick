@@ -183,6 +183,21 @@
 		},
 
 		{
+			"name": "RV-04",
+
+			"location": "Snickarrummet",
+			"description": "Rörelsevakt",
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "28559346",
+				"unit": "16",
+				"group": "0"
+			}
+		},
+
+		{
 			"name": "SR-01",
 
 			"location": "Simulering",
