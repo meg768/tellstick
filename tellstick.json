@@ -198,6 +198,21 @@
 		},
 
 		{
+			"name": "RV-05",
+
+			"location": "-",
+			"description": "-",
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "59738098",
+				"unit": "16",
+				"group": "0"
+			}
+		},
+
+		{
 			"name": "SR-01",
 
 			"location": "Simulering",
