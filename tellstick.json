@@ -392,6 +392,38 @@
 			}
 		},
 
+		{
+			"name": "PS-04",
+
+			"location": "Virtuella signaler",
+			"description": "Signal 4",
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "10000004",
+				"unit": "0",
+				"group": "0"
+			}
+		},
+
+		{
+			"name": "PS-05",
+
+			"location": "Virtuella signaler",
+			"description": "Signal 5",
+
+			"protocol": "arctech",
+			"model": "selflearning-switch",
+			"parameters": {
+				"house": "10000005",
+				"unit": "0",
+				"group": "0"
+			}
+		},
+
+
+
 
 		{
 			"name": "XMAS-01",
