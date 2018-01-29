@@ -18,7 +18,7 @@ var Module = new function() {
 
 			telldus.addRawDeviceEventListener(function(id, data) {
 
-				var packet = {};
+				var packet = {id:id};
 
 				data.split(';').forEach((item) => {
 					item = item.split(':');
