@@ -19,12 +19,12 @@ var Module = new function() {
 			telldus.addRawDeviceEventListener(function(id, data) {
 
 				var packet = {};
-				data.split(';').forEach((item) => (
+				data.split(';').forEach((item) => {
 					var split = item.split(':');
 					if (split.length == 2) {
 						packet[split[0]] = split[1];
 					}
-				));
+				});
 				console.log(packet);
 			});
 
