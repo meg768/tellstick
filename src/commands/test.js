@@ -18,7 +18,7 @@ var Module = new function() {
 			});
 
 			var val = '36';
-			console.log(telldus.getDeviceParameterSync(4, 'groupX', ''));
+			console.log('<%s>', telldus.getDeviceParameterSync(4, 'groupX', ''));
 			console.log(val);
 			setTimeout(function(){}, 10 * 1000);
 
