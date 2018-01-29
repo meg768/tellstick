@@ -19,13 +19,15 @@ var Module = new function() {
 			telldus.addRawDeviceEventListener(function(id, data) {
 
 				var packet = {};
+
 				data.split(';').forEach((item) => {
-					var split = item.split(':');
-					if (split.length == 2) {
-						packet[split[0]] = split[1];
-					}
+					item = item.split(':');
+
+					if (item.length == 2)
+						packet[item[0]] = item[1];
 				});
-				console.log(packet);
+
+				console.log(JSON.stringify(packet));
 			});
 
 			setTimeout(function(){}, argv.duration * 1000);
