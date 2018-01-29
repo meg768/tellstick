@@ -18,7 +18,7 @@ var Module = new function() {
 			});
 
 			var val = '36';
-			console.log(telldus.getDeviceParameterSync(4, 'unit', ''));
+			console.log(telldus.getDeviceParameterSync(4, 'group', ''));
 			console.log(val);
 			setTimeout(function(){}, 10 * 1000);
 
