@@ -17,6 +17,7 @@ var Module = new function() {
 			console.log(sprintf('Scanning for %d seconds...', argv.duration));
 
 			telldus.addRawDeviceEventListener(function(id, data) {
+				data = data.split(';');
 				console.log(id, data);
 			});
 
