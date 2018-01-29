@@ -22,6 +22,7 @@ var App = function() {
 			args.command(require('./src/commands/register.js'));
 			args.command(require('./src/commands/sensors.js'));
 			args.command(require('./src/commands/parse.js'));
+			args.command(require('./src/commands/test.js'));
 
 			args.help();
 
