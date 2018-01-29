@@ -13,13 +13,11 @@ var Module = new function() {
 	function run(argv) {
 
 		try {
-			console.log(sprintf('Scanning for %d seconds...', argv.duration));
-
 			telldus.addRawDeviceEventListener(function(id, data) {
 				console.log(id, data);
 			});
 
-			setTimeout(function(){}, argv.duration * 1000);
+			setTimeout(function(){}, 10 * 1000);
 
 
 		}
@@ -31,7 +29,7 @@ var Module = new function() {
 	}
 
 	module.exports.command  = 'test [options]';
-	module.exports.describe = 'Test script for debugging';
+	module.exports.describe = 'Test script';
 	module.exports.builder  = defineArgs;
 	module.exports.handler  = run;
 
