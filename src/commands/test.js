@@ -17,8 +17,9 @@ var Module = new function() {
 				console.log(id, data);
 			});
 
-			console.log(telldus.getDeviceParameterSync(4, 'house'));
-
+			var val;
+			console.log(telldus.getDeviceParameterSync(4, 'house', val));
+			console.log(val);
 			setTimeout(function(){}, 10 * 1000);
 
 
